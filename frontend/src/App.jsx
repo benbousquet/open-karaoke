@@ -1,5 +1,7 @@
+import Karaoke from "./components/Karaoke";
+
 function App() {
-  return <h1 className="text-3xl font-bold underline">Hello world!</h1>;
+  return <Karaoke />;
 }
 
 export default App;
