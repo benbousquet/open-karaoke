@@ -35,17 +35,23 @@ function Karaoke() {
     setIsPlaying(!current);
   }
 
+  function skipTo(time) {
+    setIsPlaying(false);
+    setTime(time)
+  }
+
   return (
     <div className="w-4/5">
       <audio src={audioFile} ref={audioRef} />
-      <Lyrics curTime={time} />
-      <ProgressBar
-        curTime={time}
-        totalTime={audioRef.current?.duration || 0}
-        setTime={setTime}
-        setIsPlaying={setIsPlaying}
-      />
-      <Controls toggle={togglePlayback} isPlaying={isPlaying} />
+      <div className="flex-col">
+        <Lyrics curTime={time} skipTo={skipTo} />
+        <ProgressBar
+          curTime={time}
+          totalTime={audioRef.current?.duration || 0}
+          skipTo={skipTo}
+        />
+        <Controls toggle={togglePlayback} isPlaying={isPlaying} />
+      </div>
     </div>
   );
 }
