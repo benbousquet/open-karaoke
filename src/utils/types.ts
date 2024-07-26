@@ -1,4 +1,4 @@
-enum Key {
+export enum Key {
   "a",
   "b",
   "c",
@@ -6,9 +6,15 @@ enum Key {
   "e",
   "f",
   "g",
+  "cs",
+  "ds",
+  "fs",
+  "gs",
+  "as",
 }
 
-type Note = {
+export type Note = {
+  id: Number; // unique id
   key: Key; // musical
   start: Number; // milliseconds
   duration: Number; // milliseconds
