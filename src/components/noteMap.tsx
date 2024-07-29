@@ -29,7 +29,7 @@ export default function NoteMap() {
   return (
     <div className="absolute w-full">
       {lines.map((staff) => (
-        <div key={staff.id} className="h-6 border-y relative">
+        <div key={staff.id} className="h-6 relative">
           {DrawNotes(staff.key)}
         </div>
       ))}

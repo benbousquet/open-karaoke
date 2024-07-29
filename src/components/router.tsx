@@ -1,11 +1,13 @@
 import { useState } from "react"
-import Home from "../screens/home"
+import Home from "@/screens/home"
+import Edit from "@/screens/edit";
 
 export default function Router() {
   const routes = {
-    "home": <Home />
+    "home": <Home />,
+    "edit": <Edit />,
   }
-  const [route, setRoute] = useState<JSX.Element>(<Home />);
+  const [route, setRoute] = useState<JSX.Element>(<Edit />);
   return (
     <div>
       {route}

@@ -6,8 +6,9 @@ import { useNoteContext } from "@/utils/context";
 
 export default function NoteNode({ note }: { note: Note }) {
   const [notes, changeNote] = useNoteContext();
-  const [{ x, width }, api] = useSpring(() => ({
+  const [{ x, y, width }, api] = useSpring(() => ({
     x: 0,
+    y: 0,
     width: 0,
   }));
   const noteRef = useRef(null);
@@ -82,21 +83,26 @@ export default function NoteNode({ note }: { note: Note }) {
     return Math.ceil(Number(time) / 10);
   }
 
+  function findBounds(id: Number): [Number, Number] {
+    
+    return [12, 12]
+  }
+
   return (
     <animated.div
       ref={noteRef}
-      className={"h-full rounded border border-black cursor-move"}
+      className={"h-full rounded border border-black cursor-move absolute"}
       style={{ x, width }}
       {...bind()}
     >
       <div
         ref={leftRef}
-        className="h-full absolute left--0.5 top-0 cursor-col-resize w-1 bg-red-500"
+        className="h-full absolute left--0.5 top-0 cursor-col-resize w-1"
         // onMouseMove
       ></div>
       <div
         ref={rightRef}
-        className="h-full absolute right-[-0.25px] top-0 cursor-col-resize w-1 bg-red-500"
+        className="h-full absolute right-[-0.25px] top-0 cursor-col-resize w-1"
       ></div>
     </animated.div>
   );
