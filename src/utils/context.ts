@@ -1,7 +1,7 @@
 import { Note } from "@/utils/types";
 import { createContext, useContext } from "react";
 
-export const PitchTimelineContext = createContext<Note[] | undefined>(
+export const PitchTimelineContext = createContext<[notes: Note[], changeNote: (id: Number, newNote: Note) => void] | undefined>(
   undefined
 );
 

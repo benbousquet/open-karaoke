@@ -3,7 +3,7 @@ import { Key, Note } from "@/utils/types";
 import NoteNode from "@/components/noteNode";
 
 export default function NoteMap() {
-  const notes: Note[] = useNoteContext();
+  const [notes, _] = useNoteContext();
   const lines = [
     { id: 1, key: Key["c"] },
     { id: 2, key: Key["cs"] },

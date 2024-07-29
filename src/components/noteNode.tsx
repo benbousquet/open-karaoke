@@ -2,8 +2,10 @@ import { Note } from "@/utils/types";
 import { useEffect, useRef } from "react";
 import { animated, useSpring } from "@react-spring/web";
 import { useDrag } from "@use-gesture/react";
+import { useNoteContext } from "@/utils/context";
 
 export default function NoteNode({ note }: { note: Note }) {
+  const [notes, changeNote] = useNoteContext();
   const [{ x, width }, api] = useSpring(() => ({
     x: 0,
     width: 0,
@@ -13,20 +15,39 @@ export default function NoteNode({ note }: { note: Note }) {
   const leftRef = useRef(null);
 
   useEffect(() => {
-    const noteElement = noteRef.current;
     api.set({
       x: timeToPixels(Number(note.start)),
       width: timeToPixels(Number(note.duration)),
     });
   }, []);
+  140;
 
   const bind = useDrag(
     (state) => {
       const isRightResize = state?.event.target === rightRef.current;
       if (isRightResize) {
         api.set({ width: state.offset[0] });
+        const newNote: Note = {
+          id: note.id,
+          duration: state.offset[0] * 10,
+          key: note.key,
+          start: note.start,
+        };
+        changeNote(note.id, newNote);
       } else {
-        api.set({ x: state.offset[0] });
+        // fixes odd bug not displaying right handle
+        let newStart = state.offset[0];
+        if (newStart === 0) {
+          newStart = 1;
+        }
+        api.set({ x: newStart });
+        const newNote: Note = {
+          id: note.id,
+          duration: note.duration,
+          key: note.key,
+          start: state.offset[0],
+        };
+        changeNote(note.id, newNote);
       }
     },
     {
@@ -45,7 +66,7 @@ export default function NoteNode({ note }: { note: Note }) {
           };
         }
         return {
-          left: 1,
+          left: 0,
         };
       },
     }
