@@ -7,7 +7,7 @@ export default function Router() {
     "home": <Home />,
     "edit": <Edit />,
   }
-  const [route, setRoute] = useState<JSX.Element>(<Edit />);
+  const [route, setRoute] = useState<JSX.Element>(<Home />);
   return (
     <div>
       {route}

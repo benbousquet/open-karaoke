@@ -4,11 +4,10 @@ import { useRef, useState } from "react";
 import { animated, useSpring } from "@react-spring/web";
 import Staff from "@/components/staff";
 import NoteMap from "@/components/noteMap";
-import test from "./test.mp3"
 export default function PitchTimeline({
   currentTime,
 }: {
-  currentTime: Number;
+  currentTime: number;
 }) {
   const audioRef = useRef(null);
 
@@ -25,11 +24,11 @@ export default function PitchTimeline({
     x: 10,
   }));
 
-  function changeNote(id: Number, newNote: Note): void {
+  function changeNote(id: number, newNote: Note): void {
     const noteIdx = notes.findIndex((val) => {
       return val.id === id;
     });
-    let newNotes = [...notes];
+    const newNotes = [...notes];
     newNotes[noteIdx].key = newNote.key;
     newNotes[noteIdx].duration = newNote.duration;
     newNotes[noteIdx].start = newNote.start;
@@ -42,7 +41,7 @@ export default function PitchTimeline({
 
   return (
     <div>
-      <audio src={test} ref={audioRef} />
+      {/* <audio src={test} ref={audioRef} /> */}
       <div className="absolute bg-red-400 h-72 w-1.5"></div>
       <animated.div className="border border-secondary" style={{ x }}>
         <PitchTimelineContext.Provider value={[notes, changeNote]}>
