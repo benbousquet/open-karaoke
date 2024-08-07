@@ -1,4 +1,5 @@
 import PitchTimeline from "@/components/pitchTimeline";
+import StaffCanvas from "@/components/staffCanvas";
 
 export default function Edit() {
 
@@ -6,7 +7,8 @@ export default function Edit() {
     <div className="overflow-auto">
       <h1 className="text-center text-3xl">Edit</h1>
       <div className="">
-        <PitchTimeline currentTime={1000} />
+        <StaffCanvas />
+        {/* <PitchTimeline currentTime={1000} /> */}
       </div>
     </div>
   )

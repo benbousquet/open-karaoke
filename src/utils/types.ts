@@ -14,8 +14,8 @@ export enum Key {
 }
 
 export type Note = {
-  id: Number; // unique id
+  id: number; // unique id
   key: Key; // musical
-  start: Number; // milliseconds
-  duration: Number; // milliseconds
+  start: number; // milliseconds
+  duration: number; // milliseconds
 };
